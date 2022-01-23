@@ -127,14 +127,14 @@ pokedex.innerHTML=pokemondetails
 }
 searchBar.addEventListener("keyup", (e) => {
     const searchString=e.target.value;
-   
+   let x=0;
     const filterdpokemon=arrayHolder.filter(pokemon=>{
       return  pokemon.Name.includes(searchString);
      
       
     })
     
- filterdpokemon.length===0?desplayPokemons(filterdpokemon):desplayPokemonsfromSearch(filterdpokemon)
+ filterdpokemon.length!=100?desplayPokemonsfromSearch(filterdpokemon):desplayPokemons(filterdpokemon)
       
  
     
