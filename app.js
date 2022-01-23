@@ -62,7 +62,7 @@ const desplayPokemons = (pokemon) => {
 const  selectpokemon= async(id)=>{
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
    
-        const res = await fetch(url);
+          const res = await fetch(url);
          const pokemon= await res.json();
          console.log(pokemon)
          popup(pokemon);
@@ -127,16 +127,23 @@ pokedex.innerHTML=pokemondetails
 }
 searchBar.addEventListener("keyup", (e) => {
     const searchString=e.target.value;
+   
     const filterdpokemon=arrayHolder.filter(pokemon=>{
-      return  pokemon.Name.includes(searchString)
+      return  pokemon.Name.includes(searchString);
+     
+      
     })
-    desplayPokemonsfromSearch(filterdpokemon)
+    
+ filterdpokemon.length===0?desplayPokemons(filterdpokemon):desplayPokemonsfromSearch(filterdpokemon)
+      
+ 
+    
    });
    const desplayPokemonsfromSearch = (pokemon) => {
-       console.log(pokemon);
+       console.log(pokemon.length);
        const dataHolder = [];
-      
-         const elemnt = pokemon[Math.floor(Math.random() * pokemon.length)];
+       for(let i=0;i<pokemon.length;i++){
+         const elemnt = pokemon[i];
          dataHolder.push(`
              
              <li class=" col s3" >
@@ -160,5 +167,5 @@ searchBar.addEventListener("keyup", (e) => {
      
        pokemonHtml = dataHolder.join("");
        pokedex.innerHTML = pokemonHtml;
-     };
+     }};
 fetchpokemon();
